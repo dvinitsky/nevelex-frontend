@@ -12,6 +12,8 @@ class App extends Component {
     this.pikachuCheck = this.pikachuCheck.bind(this);
     this.addAnimal = this.addAnimal.bind(this);
     this.deleteAnimal = this.deleteAnimal.bind(this);
+    this.hideAnimalDetails = this.hideAnimalDetails.bind(this);
+    this.keyPressHandler = this.keyPressHandler.bind(this);
 
     this.state = {
       animals: [],
@@ -54,6 +56,11 @@ class App extends Component {
     document.getElementById("allAnimals").style.width = '50%';
   }
 
+  async hideAnimalDetails() {
+    document.getElementById("animalDetailContainer").style.display = "none";
+    document.getElementById("allAnimals").style.width = '100%';
+  }
+
   async addAnimal() {
     let input = document.getElementsByClassName("input");
 
@@ -63,6 +70,12 @@ class App extends Component {
       family: input[2].value,
       imageURL: input[3].value
     };
+
+    //Make sure Common Name is present
+    if (animal.commonName.trim() === '') {
+      alert("Common Name is a required field.");
+      return;
+    }
 
     await APIHandler.addAnimal(animal);
 
@@ -75,9 +88,15 @@ class App extends Component {
     this.getAnimalList();
   }
 
+  keyPressHandler(e) {
+    if (e.which === 13) {
+      this.addAnimal();
+    }
+  }
+
   async deleteAnimal(id) {
     await APIHandler.deleteAnimal(id);
-    document.getElementById("animalDetailContainer").style.display = "none";
+    this.hideAnimalDetails();
     this.getAnimalList();
   }
 
@@ -88,50 +107,51 @@ class App extends Component {
   render() {
     return (
       <div className="App" >
-      
 
-      <div class="mainContainer">
-        <div id="allAnimals" className="container" >
-          <h3> Click on an animal to see more details! </h3>
-          <AnimalList animals={this.state.animals} onClick={this.animalSelect} />
+
+        <main>
+          <div id="allAnimals" className="container" >
+            <h3 className="header"> Click on an animal to see more details! </h3>
+            <AnimalList animals={this.state.animals} onClick={this.animalSelect} />
+          </div >
+
+          <div id="animalDetailContainer" className="container" >
+            <AnimalDetails animalDetails={this.state.animalDetails} delete={this.deleteAnimal} hide={this.hideAnimalDetails} />
+          </div >
+        </main>
+
+
+        <div className="addAnimalContainer container" >
+
+          <h3 className="header">Add your own animal!</h3>
+
+          <div className="inputsWrapper">
+            <div className="inputContainer">
+              <p>Common Name <strong>(required)</strong></p>
+              <input onKeyPress={this.keyPressHandler} className="input" type="text" />
+            </div>
+
+            <div className="inputContainer">
+              <p> Scientific Name </p>
+              <input onKeyPress={this.keyPressHandler} className="input" type="text" />
+            </div>
+
+            <div className="inputContainer">
+              <p > Family </p>
+              <input onKeyPress={this.keyPressHandler} className="input" type="text" />
+            </div>
+
+            <div className="inputContainer">
+              <p> Image URL </p>
+              <input onKeyPress={this.keyPressHandler} className="input" type="text" />
+            </div>
+          </div>
+
+          <button onClick={this.addAnimal} > Submit </button>
+
         </div >
 
-        <div id="animalDetailContainer" className="container" >
-          <AnimalDetails animalDetails={this.state.animalDetails} delete={this.deleteAnimal} />
-        </div >
-      </div>
-      
-
-      <div className="addAnimalContainer container" >
-
-        <h3>Add your own animal!</h3>
-
-        <div className="inputsWrapper">
-          <div className="inputContainer">
-            <p> Common Name(required) </p>
-            <input className="input" type="text" />
-          </div>
-
-          <div className="inputContainer">
-            <p> Scientific Name </p>
-            <input className="input" type="text" />
-          </div>
-
-          <div className="inputContainer">
-            <p > Family </p>
-            <input className="input" type="text" />
-          </div>
-
-          <div className="inputContainer">
-            <p> Image URL </p>
-            <input className="input" type="text" />
-          </div>
-        </div>
-
-        <button onClick={this.addAnimal} > Submit </button>
-
-      </div >
-
+        <footer>Designed by Daniel Vinitsky</footer>
 
       </div>
     );
