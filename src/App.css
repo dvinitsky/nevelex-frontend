@@ -4,13 +4,12 @@
 
 .App {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 .container {
-  margin: 0 auto;
   text-align: center;
+  margin: 40px;
 }
 
 img {
@@ -22,7 +21,10 @@ img {
   font-style: italic;
 }
 
-.centerOr {
-  font-size: 40px;
-  font-weight: bold;
+#animalDetailContainer {
+  display: none;
+}
+
+.Animal {
+  cursor: pointer;
 }

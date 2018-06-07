@@ -9,9 +9,8 @@ export class AnimalList extends Component {
     return (
       <div className="AnimalList">
         {this.props.animals.map(animal => {
-          console.log('Now rendering ' + animal.commonName);
           return (
-            <Animal key={animal.id} id={animal.id} imageURL={animal.imageURL} commonName={animal.commonName} scientificName={animal.scientificName} family={animal.family}  />
+            <Animal key={animal.id} id={animal.id} imageURL={animal.imageURL} commonName={animal.commonName} scientificName={animal.scientificName} family={animal.family}  onClick={this.props.onClick}/>
           )
         })}
       </div>
