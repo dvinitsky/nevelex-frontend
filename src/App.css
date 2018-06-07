@@ -2,14 +2,20 @@
   background-color: rgb(220, 236, 247);
 }
 
-.App {
-  display: flex;
-  align-items: center;
-}
-
 .container {
   text-align: center;
   margin: 40px;
+}
+
+.animalList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.animal {
+  cursor: pointer;
+  margin: 20px;
+  min-width: 80px;
 }
 
 img {
@@ -25,6 +31,4 @@ img {
   display: none;
 }
 
-.Animal {
-  cursor: pointer;
-}
+

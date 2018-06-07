@@ -37,38 +37,19 @@ class App extends Component {
     animals.forEach(animal => {
       return this.pikachuCheck(animal);
     });
-
-    //alphabetize animal list
-    let newList = [animals[0]];
-
-    for (let a = 1; a < animals.length; a++) {
-      //for each animals on the list, check against each newList item
-      for (let i = 0; i < newList.length; i++) {
-        //if we've reached the end of newList, tack the current animal on to the end
-        if (i === newList.length) {
-          newList.push(animals[a]);
-          break;
-        }
-        //otherwise, keep checking until we find a newList animal that's later in the alphabet than the current animal
-        else if (
-          newList[i].commonName.toLowerCase() >
-          animals[a].commonName.toLowerCase()
-        ) {
-          //add our current animal in before that newList animal
-          newList.splice(i, 0, animals[a]);
-          break;
-        }
-      }
-    }
-
-    this.setState({ animals: newList });
+  
+    this.setState({
+      animals: animals
+    });
   }
 
   async animalSelect(animalId) {
     let animalDetails = await APIHandler.getAnimalDetails(animalId);
     animalDetails = this.pikachuCheck(animalDetails);
 
-    this.setState({ animalDetails: animalDetails });
+    this.setState({
+      animalDetails: animalDetails
+    });
     document.getElementById("animalDetailContainer").style.display = "block";
   }
 
@@ -105,35 +86,34 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="allAnimals container">
-          <h1>All Animals</h1>
-          <h3>Click on an animal to see more details!</h3>
-          <AnimalList
-            animals={this.state.animals}
-            onClick={this.animalSelect}
-          />
-        </div>
+      <div className="App" >
+        <div className="allAnimals container" >
+          <h3> Click on an animal to see more details! </h3>
+          <AnimalList animals={this.state.animals} onClick={this.animalSelect} />
+        </div >
 
-        <div id="animalDetailContainer" className="container">
-          <AnimalDetails
-            animalDetails={this.state.animalDetails}
-            delete={this.deleteAnimal}
-          />
-        </div>
+        <div id="animalDetailContainer"
+          className="container" >
+          <AnimalDetails animalDetails={this.state.animalDetails} delete={this.deleteAnimal} />
+        </div >
 
-        <div className="addAnimalContainer container">
-          <p>Common Name (required)</p>
+        <div className="addAnimalContainer container" >
+          <p> Common Name(required) </p>
           <input className="input" type="text" />
-          <p>Scientific Name</p>
+
+          <p> Scientific Name </p>
           <input className="input" type="text" />
-          <p>Family</p>
+
+          <p > Family </p>
           <input className="input" type="text" />
-          <p>Image URL</p>
+
+          <p> Image URL </p>
           <input className="input" type="text" />
+
           <p />
-          <button onClick={this.addAnimal}>Submit</button>
-        </div>
+          <button onClick={this.addAnimal} > Submit </button>
+        </div >
+
       </div>
     );
   }

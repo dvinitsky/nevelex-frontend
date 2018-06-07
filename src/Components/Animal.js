@@ -13,7 +13,7 @@ export class Animal extends Component {
 
   render() {
     return (
-      <div className="Animal" onClick={this.clickHandler}>
+      <div className="animal" onClick={this.clickHandler}>
         <p className="animalName">{this.props.commonName}</p>
 
         {this.props.imageURL ? (
