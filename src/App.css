@@ -2,6 +2,30 @@
   background-color: rgb(220, 236, 247);
 }
 
+h3, p, h1, h2 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+img {
+  max-width: 100px;
+}
+
+.addAnimalContainer {
+  border: 3px solid black;  
+  border-radius: 80px;
+  padding-bottom: 15px;
+  background-color: rgb(255, 214, 214);
+}
+
+.inputContainer {
+  margin: 20px;
+}
+
+.inputsWrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   text-align: center;
   margin: 40px;
@@ -10,16 +34,18 @@
 .animalList {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+.mainContainer {
+  display: flex;
+  align-items: center;
 }
 
 .animal {
   cursor: pointer;
   margin: 20px;
   min-width: 80px;
-}
-
-img {
-  max-width: 100px;
 }
 
 .animalName {
@@ -29,6 +55,8 @@ img {
 
 #animalDetailContainer {
   display: none;
+  border: 2px solid black;
+  margin: 0 auto;
+  padding: 40px;
 }
-
 

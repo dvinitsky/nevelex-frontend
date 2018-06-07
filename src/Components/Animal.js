@@ -16,9 +16,12 @@ export class Animal extends Component {
       <div className="animal" onClick={this.clickHandler}>
         <p className="animalName">{this.props.commonName}</p>
 
-        {this.props.imageURL ? (
-          <img src={this.props.imageURL} alt={this.props.commonName} />
-        ) : null}
+        <div className="imageContainer">
+          {this.props.imageURL ? (
+            <img src={this.props.imageURL} alt={this.props.commonName} />
+          ) : null}
+        </div>
+
       </div>
     );
   }

@@ -37,7 +37,7 @@ class App extends Component {
     animals.forEach(animal => {
       return this.pikachuCheck(animal);
     });
-  
+
     this.setState({
       animals: animals
     });
@@ -50,7 +50,8 @@ class App extends Component {
     this.setState({
       animalDetails: animalDetails
     });
-    document.getElementById("animalDetailContainer").style.display = "block";
+    document.getElementById("animalDetailContainer").style.display = "inline-block";
+    document.getElementById("allAnimals").style.width = '50%';
   }
 
   async addAnimal() {
@@ -87,32 +88,49 @@ class App extends Component {
   render() {
     return (
       <div className="App" >
-        <div className="allAnimals container" >
+
+      <div class="mainContainer">
+        <div id="allAnimals" className="container" >
           <h3> Click on an animal to see more details! </h3>
           <AnimalList animals={this.state.animals} onClick={this.animalSelect} />
         </div >
 
-        <div id="animalDetailContainer"
-          className="container" >
+        <div id="animalDetailContainer" className="container" >
           <AnimalDetails animalDetails={this.state.animalDetails} delete={this.deleteAnimal} />
         </div >
+      </div>
+      
 
-        <div className="addAnimalContainer container" >
-          <p> Common Name(required) </p>
-          <input className="input" type="text" />
+      <div className="addAnimalContainer container" >
 
-          <p> Scientific Name </p>
-          <input className="input" type="text" />
+        <h3>Add your own animal!</h3>
 
-          <p > Family </p>
-          <input className="input" type="text" />
+        <div className="inputsWrapper">
+          <div className="inputContainer">
+            <p> Common Name(required) </p>
+            <input className="input" type="text" />
+          </div>
 
-          <p> Image URL </p>
-          <input className="input" type="text" />
+          <div className="inputContainer">
+            <p> Scientific Name </p>
+            <input className="input" type="text" />
+          </div>
 
-          <p />
-          <button onClick={this.addAnimal} > Submit </button>
-        </div >
+          <div className="inputContainer">
+            <p > Family </p>
+            <input className="input" type="text" />
+          </div>
+
+          <div className="inputContainer">
+            <p> Image URL </p>
+            <input className="input" type="text" />
+          </div>
+        </div>
+
+        <button onClick={this.addAnimal} > Submit </button>
+
+      </div >
+
 
       </div>
     );
