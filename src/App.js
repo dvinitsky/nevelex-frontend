@@ -88,6 +88,7 @@ class App extends Component {
   render() {
     return (
       <div className="App" >
+      
 
       <div class="mainContainer">
         <div id="allAnimals" className="container" >
