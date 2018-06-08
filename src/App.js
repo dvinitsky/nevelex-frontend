@@ -53,7 +53,7 @@ class App extends Component {
       animalDetails: animalDetails
     });
     document.getElementById("animalDetailContainer").style.display = "inline-block";
-    document.getElementById("allAnimals").style.width = '50%';
+    document.getElementById("allAnimals").style.width = '50%';  
   }
 
   async hideAnimalDetails() {
@@ -108,7 +108,6 @@ class App extends Component {
     return (
       <div className="App" >
 
-
         <main>
           <div id="allAnimals" className="container" >
             <h3 className="header"> Click on an animal to see more details! </h3>
@@ -126,8 +125,8 @@ class App extends Component {
           <h3 className="header">Add your own animal!</h3>
 
           <div className="inputsWrapper">
-            <div className="inputContainer">
-              <p>Common Name <strong>(required)</strong></p>
+            <div className="inputContainer commonName">
+              <p>Common Name <span id="break"><br /></span><strong>(required)</strong></p>
               <input onKeyPress={this.keyPressHandler} className="input" type="text" />
             </div>
 

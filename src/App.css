@@ -2,10 +2,17 @@
 :root {
   background-image: url('http://14textures.com/wp-content/uploads/2015/06/VC_Summer__2923.jpg');
 }
+span {
+  display: none;
+}
 
 main {
   display: flex;
   align-items: center;
+}
+
+#allAnimals, #animalDetailsContainer {
+  min-width: 600px;
 }
 
 div, h3, p, h1, h2 {
@@ -66,6 +73,7 @@ img {
 .inputsWrapper {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
 }
 
 /* DETAIL */
@@ -94,6 +102,28 @@ footer {
   text-shadow: 2px 2px 4px black;
   font-weight: 700;
   font-size: 16px;
+}
+
+@media only screen and (max-width: 980px) {
+
+  #allAnimals {
+    margin: 30px auto;
+  }
+
+  main {
+    flex-wrap: wrap;
+  }
   
 }
 
+@media only screen and (max-width: 750px) {
+
+  .inputsWrapper {
+    flex-wrap: wrap;
+  }
+
+  span {
+    display: inline;
+  }
+  
+}
